@@ -5,13 +5,13 @@ A capacitor plugin that lets you get an unadultered image (in Base64)  using the
 ## Install
 
 ```bash
-npm install gimmeimage
+npm install @swarmtechnology/gimmeimage
 npx cap sync
 ```
 or, if you use yarn...
 
 ```bash
-yarn add gimmeimage
+yarn add @swarmtechnology/gimmeimage
 npx cap sync
 ```
 
