@@ -1,10 +1,10 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { GimmeImagePlugin } from './definitions';
+import type { GimmeImagePlugin, GimmeOptions } from './definitions';
 
 export class GimmeImageWeb extends WebPlugin implements GimmeImagePlugin {
-  async echo(options: { value: string }): Promise<{ value: string }> {
-    console.log('ECHO', options);
-    return options;
+  gimmeMediaItem(options?: GimmeOptions): Promise<MediaAsset> {
+    console.log('getMedias', options);
+    throw this.unimplemented('Not implemented on web.');
   }
 }

@@ -8,6 +8,12 @@ A capacitor plugin that lets you get an unadultered image (in Base64)  using the
 npm install gimmeimage
 npx cap sync
 ```
+or, if you use yarn...
+
+```bash
+yarn add gimmeimage
+npx cap sync
+```
 
 ## API
 
