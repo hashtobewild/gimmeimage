@@ -1,6 +1,6 @@
 import { WebPlugin } from '@capacitor/core';
 
-import type { GimmeImagePlugin, GimmeOptions } from './definitions';
+import type { GimmeImagePlugin, GimmeOptions, MediaAsset } from './definitions';
 
 export class GimmeImageWeb extends WebPlugin implements GimmeImagePlugin {
   gimmeMediaItem(options?: GimmeOptions): Promise<MediaAsset> {
