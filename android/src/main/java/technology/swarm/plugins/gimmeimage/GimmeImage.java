@@ -4,8 +4,8 @@ import android.util.Log;
 
 public class GimmeImage {
 
-    public String echo(String value) {
-        Log.i("Echo", value);
+    public String gimmeMediaItem(String value) {
+        Log.i("GimmeMediaItem", value);
         return value;
     }
 }
