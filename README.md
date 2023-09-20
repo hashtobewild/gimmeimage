@@ -30,7 +30,7 @@ npx cap sync
 ### gimmeMediaItem(...)
 
 ```typescript
-gimmeMediaItem(options?: GimmeOptions | undefined) => Promise<MediaAsset>
+gimmeMediaItem(options?: GimmeOptions) => Promise<MediaAsset>
 ```
 
 Get media item from camera roll referenced by the platform specific identifier.
