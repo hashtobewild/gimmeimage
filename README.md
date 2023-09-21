@@ -1,6 +1,6 @@
 # gimmeimage
 
-A capacitor plugin that lets you get an unadultered image (in Base64)  using the platform specific identifier
+A capacitor plugin that lets you get an unadultered image (in Base64) using the platform specific identifier. This is early-days in the dev and it problably does not work off-the-shelf.
 
 ## Install
 
