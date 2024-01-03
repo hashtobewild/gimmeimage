@@ -65,27 +65,41 @@ public class GimmeImagePlugin: CAPPlugin {
             var a = JSObject()
             if let asset = fetchedAssets.firstObject {
                 // Request the image
-                PHImageManager.default().requestImageDataAndOrientation(for: asset, options: nil, resultHandler: { (fetchedImage, _, _, _) in
-                    guard let image = fetchedImage else {
+                PHImageManager.default().requestImageDataAndOrientation(for: asset, options: nil) { (imageData, dataUTI, orientation, info) in
+                    guard let heicImageData = imageData else {
                         return
                     }
-                    a["identifier"] = asset.localIdentifier
 
-                    // TODO: We need to know original type
-                    a["data"] = image.base64EncodedString(options: .lineLength64Characters)
-
-                    if asset.creationDate != nil {
-                        a["creationDate"] = JSDate.toString(asset.creationDate!)
-                    }
-                    a["fullWidth"] = asset.pixelWidth
-                    a["fullHeight"] = asset.pixelHeight
-                    a["thumbnailWidth"] = asset.pixelWidth
-                    a["thumbnailHeight"] = asset.pixelHeight
-                    a["location"] = self.makeLocation(asset)
-
-                    // Send back to JavaScript
-                    call.resolve(a)
-                })
+                    // Convert HEIC data to UIImage
+                    if let heicImage = UIImage(data: heicImageData) {
+                        // Convert UIImage to JPEG data
+                        if let jpegData = heicImage.jpegData(compressionQuality: 1.0) {
+                            var a: [String: Any] = [:]
+                            a["identifier"] = asset.localIdentifier
+                            a["data"] = jpegData.base64EncodedString(options: .lineLength64Characters)
+                            
+                            if let creationDate = asset.creationDate {
+                                a["creationDate"] = JSDate.toString(creationDate)
+                            }
+                            
+                            a["fullWidth"] = asset.pixelWidth
+                            a["fullHeight"] = asset.pixelHeight
+                            a["thumbnailWidth"] = asset.pixelWidth
+                            a["thumbnailHeight"] = asset.pixelHeight
+                            
+                            if let fileType = info?["PHImageFileUTIKey"] as? String {
+                                a["type"] = fileType
+                            } else {
+                                a["type"] = "unknown" // Set a default value or handle the case when file type is not available
+                            }
+                            
+                            a["location"] = self.makeLocation(asset)
+                            
+                            // Send back to JavaScript
+                            call.resolve(a)
+                        };
+                    };
+                };
             } else {
                 call.reject("Asset not found.")
             }

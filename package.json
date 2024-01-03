@@ -1,6 +1,6 @@
 {
   "name": "@swarmtechnology/gimmeimage",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A capacitor plugin that lets you get an unadultered image (in Base64)  using the platform specific identifier",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",

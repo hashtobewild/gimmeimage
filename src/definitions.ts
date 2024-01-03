@@ -4,14 +4,12 @@ export interface GimmeImagePlugin {
     */
   gimmeMediaItem(options?: GimmeOptions): Promise<MediaAsset>;
 }
-
 export interface GimmeOptions {
-    /**
-     * Platform-specific identifier
-     */
-    identifier: string;
+  /**
+   * Platform-specific identifier
+   */
+  identifier: string;
 }
-
 export interface MediaAsset {
   /**
    * Platform-specific identifier
@@ -41,12 +39,16 @@ export interface MediaAsset {
    * Height of thumbnail preview
    */
   thumbnailHeight: number;
+
+  /**
+   * Type of asset
+   */
+  type: string;
   /**
    * Location metadata for the asset
    */
   location: MediaLocation;
 }
-
 export interface MediaLocation {
   /**
    * GPS latitude image was taken at
